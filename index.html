@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo - Desenvolvedor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #722F37;
+            --secondary-color: #4A1D24;
+            --accent-color: #8B4049;
+            --success-color: #A4474F;
+            --text-color: #2b2d42;
+            --light-gray: #8d99ae;
+            --bg-color: #F5E6E8;
+            --cream-color: #FAF3DD;
+            --card-shadow: 0 4px 6px rgba(114, 47, 55, 0.1);
+            --transition: all 0.3s ease;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="padrao"] {
+            --primary-color: #722F37;
+            --secondary-color: #4A1D24;
+            --accent-color: #8B4049;
+            --success-color: #A4474F;
+            --bg-color: #F5E6E8;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="azul"] {
+            --primary-color: #1E3A8A;
+            --secondary-color: #1E40AF;
+            --accent-color: #2563EB;
+            --success-color: #3B82F6;
+            --bg-color: #EFF6FF;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="verde"] {
+            --primary-color: #065F46;
+            --secondary-color: #047857;
+            --accent-color: #10B981;
+            --success-color: #34D399;
+            --bg-color: #ECFDF5;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="roxo"] {
+            --primary-color: #6D28D9;
+            --secondary-color: #7C3AED;
+            --accent-color: #8B5CF6;
+            --success-color: #A78BFA;
+            --bg-color: #F3E8FF;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="moderno"] {
+            --primary-color: #FF5722;
+            --secondary-color: #FF7043;
+            --accent-color: #FF8A65;
+            --success-color: #FFAB91;
+            --bg-color: #FFF3E0;
+            --text-contrast-color: #ffffff;
+        }
+
+        [data-tema="minimalista"] {
+            --primary-color: #374151;
+            --secondary-color: #4B5563;
+            --accent-color: #9CA3AF;
+            --success-color: #D1D5DB;
+            --bg-color: #F9FAFB;
+            --text-contrast-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--cream-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(135deg, #FAF3DD 0%, #F5E6E8 100%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(114, 47, 55, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(114, 47, 55, 0.1);
+        }
+
+        .experiencia-container {
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: white;
+            transition: var(--transition);
+        }
+
+        .experiencia-container:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 8px rgba(114, 47, 55, 0.1);
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(114, 47, 55, 0.3);
+        }
+
+        .btn-add {
+            background: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .btn-add:hover {
+            background: var(--success-color);
+        }
+
+        .foto-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .foto-preview-form, .foto-preview-curriculo {
+            width: 220px;
+            height: 160px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .foto-preview-form {
+            border: 3px solid var(--primary-color);
+        }
+
+        .foto-preview-curriculo {
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .foto-upload {
+            display: none;
+        }
+
+        .foto-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .foto-label:hover {
+            background: var(--success-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(114, 47, 55, 0.3);
+        }
+
+        .foto-label::before {
+            content: '📷';
+            font-size: 1.2em;
+        }
+
+        .foto-controles {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .controle-grupo {
+            margin-bottom: 8px;
+        }
+
+        .controle-grupo label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+
+        .foto-preview-form {
+            transform-origin: center;
+            transition: transform 0.2s ease;
+        }
+
+        .habilidade {
+            background: var(--accent-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin: 4px;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .habilidade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(114, 47, 55, 0.3);
+            background: var(--success-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        .curriculo {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-contrast-color);
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            border-radius: 20px; /* Aumentar arredondamento das bordas */
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(114, 47, 55, 0.1);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 15px 0;
+            font-size: 2.2em;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .contato {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .header .contato a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header .contato a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contato {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contato p {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            font-size: 0.9em;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 5px rgba(114, 47, 55, 0.1);
+        }
+
+        .contato p a {
+            color: var(--text-contrast-color);
+        }
+
+        .contato p a:hover {
+            color: var(--success-color);
+        }
+
+        .contato p:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .secao {
+            background: white;
+            padding: 25px;
+            margin: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(114, 47, 55, 0.05);
+        }
+
+        .secao:first-of-type {
+            margin-top: 25px;
+        }
+
+        .secao h2 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .secao h2::before {
+            content: '';
+            width: 30px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .experiencia, .formacao {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 25px;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .empresa-nome, .instituicao-nome {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .cargo-periodo, .curso-periodo {
+            display: flex;
+            justify-content: space-between;
+            color: var(--light-gray);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .descricao {
+            color: var(--text-color);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .habilidades {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .habilidades div {
+            padding: 2px 4px;
+            margin: 1px;
+        }
+
+        .habilidade {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(114, 47, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .habilidade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(114, 47, 55, 0.15);
+            background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .cargo-periodo, .curso-periodo {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        .curriculo {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .curriculo > div {
+            margin-bottom: 2px;
+        }
+
+        .curriculo > h2 {
+            margin-top: 5px;
+            margin-bottom: 2px;
+        }
+
+        p, li {
+            font-size: 0.9em;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Currículo - Desenvolvedor</h1>
+        
+        <div class="curriculo"> 
+            <form id="curriculo-form">
+                <div class="form-group">
+                    <label>Foto do Perfil</label>
+                    <div class="foto-upload-wrapper" style="text-align: center; margin: 15px 0;">
+                        <label for="foto" class="btn btn-primary">Escolher Foto</label>
+                        <input type="file" id="foto" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="foto-container">
+                        <img id="foto-preview" class="foto-preview-form" style="display: none;">
+                        <div class="foto-controles" style="display: none;">
+                            <div class="controle-grupo">
+                                <label>Zoom:</label>
+                                <input type="range" id="zoom-control" min="100" max="200" value="100" class="slider">
+                            </div>
+                            <div class="controle-grupo">
+                                <label>Posição Vertical:</label>
+                                <input type="range" id="position-y-control" min="0" max="100" value="50" class="slider">
+                            </div>
+                            <div class="controle-grupo">
+                                <label>Posição Horizontal:</label>
+                                <input type="range" id="position-x-control" min="0" max="100" value="50" class="slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nivel">Nível:</label>
+                    <select id="nivel" required>
+                        <option value="">Selecione o nível</option>
+                        <option value="junior">Júnior</option>
+                        <option value="pleno">Pleno</option>
+                        <option value="senior">Sênior</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" required>
+                    <a href="#" id="email-link" style="display:none;"></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" required>
+                    <a href="#" id="telefone-link" style="display:none;"></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn:</label>
+                    <input type="text" id="linkedin">
+                    <a href="#" id="linkedin-link" style="display:block;"></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="github">GitHub:</label>
+                    <input type="text" id="github">
+                    <a href="#" id="github-link" style="display:none;"></a>
+                </div>
+
+                <div class="form-group">
+                    <label for="objetivo">Objetivo Profissional:</label>
+                    <textarea id="objetivo" required rows="4" style="width: 100%; padding: 10px; font-family: 'Poppins', sans-serif; resize: vertical; min-height: 100px;" placeholder="Descreva seu objetivo profissional..."></textarea>
+                    <small class="form-text" style="color: #666; margin-top: 5px;">Descreva suas aspirações profissionais e como você pode contribuir para a empresa.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Experiência Profissional:</label>
+                    <button type="button" class="btn btn-add" onclick="adicionarExperiencia()">+ Adicionar Experiência</button>
+                    <div id="experiencias"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>Formação Acadêmica:</label>
+                    <button type="button" class="btn btn-add" onclick="adicionarFormacao()">+ Adicionar Formação</button>
+                    <div id="formacoes"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="habilidades">Habilidades Técnicas:</label>
+                    <textarea id="habilidades" required placeholder="Ex: JavaScript, React, Node.js, Git"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="orientacao">Orientação:</label>
+                    <select id="orientacao" class="form-control">
+                        <option value="portrait">Retrato</option>
+                        <option value="landscape">Paisagem</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tema">Tema de Cor:</label>
+                    <select id="tema" class="form-control" onchange="mudarTema()">
+                        <option value="padrao">Padrão (Bordô)</option>
+                        <option value="azul">Azul Profissional</option>
+                        <option value="verde">Verde Moderno</option>
+                        <option value="roxo">Roxo Elegante</option>
+                        <option value="moderno">Moderno (Laranja)</option>
+                        <option value="minimalista">Minimalista (Cinza)</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn" onclick="gerarCurriculo()">Gerar Currículo</button>
+            </form>
+
+            <div id="preview" class="curriculo"></div>
+        </div>
+    </div>
+
+    <script>
+        const nivelConteudo = {
+            junior: {
+                objetivo: "Desenvolvedor júnior em busca de oportunidade para iniciar minha carreira profissional, contribuindo com projetos desafiadores enquanto desenvolvo minhas habilidades técnicas. Comprometido com aprendizado contínuo e trabalho em equipe.",
+                habilidades: "HTML5, CSS3, JavaScript básico, Git básico, Lógica de Programação, Metodologias Ágeis, SQL básico"
+            },
+            pleno: {
+                objetivo: "Desenvolvedor pleno com sólida experiência em desenvolvimento de software, buscando novos desafios para aplicar e expandir conhecimentos técnicos. Capacidade comprovada de desenvolver soluções eficientes e trabalhar em equipe.",
+                habilidades: "JavaScript avançado, TypeScript, React.js, Node.js, Git avançado, Docker, REST APIs, SQL avançado, MongoDB, AWS básico, Testes unitários, CI/CD"
+            },
+            senior: {
+                objetivo: "Desenvolvedor sênior com vasta experiência em arquitetura de software e liderança técnica. Busco oportunidade para liderar projetos desafiadores, mentorear equipes e contribuir com decisões arquiteturais que impactem positivamente o negócio.",
+                habilidades: "Arquitetura de Software, Design Patterns, Microsserviços, AWS avançado, Kubernetes, DevOps, Gestão Técnica, Performance & Otimização, Segurança, Escalabilidade, Mentoria, System Design"
+            }
+        };
+
+        // Função para lidar com o upload da foto
+        document.getElementById('foto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('foto-preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    document.querySelector('.foto-controles').style.display = 'block';
+                    
+                    // Resetar controles
+                    const zoomControl = document.getElementById('zoom-control');
+                    const positionYControl = document.getElementById('position-y-control');
+                    const positionXControl = document.getElementById('position-x-control');
+                    zoomControl.value = 100;
+                    positionYControl.value = 50;
+                    positionXControl.value = 50;
+                    atualizarFoto();
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function atualizarConteudoPorNivel() {
+            const nivel = document.getElementById('nivel').value;
+            const objetivoInput = document.getElementById('objetivo');
+            const habilidadesInput = document.getElementById('habilidades');
+
+            console.log('Atualizando conteúdo para nível:', nivel);
+
+            if (nivel && nivelConteudo[nivel]) {
+                console.log('Objetivo anterior:', objetivoInput.value);
+                console.log('Novo objetivo:', nivelConteudo[nivel].objetivo);
+
+                objetivoInput.value = nivelConteudo[nivel].objetivo;
+                habilidadesInput.value = nivelConteudo[nivel].habilidades;
+
+                // Dispara um evento de input para garantir que o valor seja atualizado
+                const event = new Event('input', {
+                    bubbles: true,
+                    cancelable: true,
+                });
+                objetivoInput.dispatchEvent(event);
+                habilidadesInput.dispatchEvent(event);
+
+                console.log('Conteúdo atualizado com sucesso!');
+            } else {
+                console.warn('Nível não encontrado:', nivel);
+            }
+        }
+
+        // Adicionar evento de mudança ao select de nível
+        document.getElementById('nivel').addEventListener('change', atualizarConteudoPorNivel);
+
+        function adicionarExperiencia() {
+            const container = document.createElement('div');
+            container.className = 'experiencia-container';
+            container.innerHTML = `
+                <div class="form-group">
+                    <label>Empresa:</label>
+                    <input type="text" class="empresa" required>
+                </div>
+                <div class="form-group">
+                    <label>Cargo:</label>
+                    <input type="text" class="cargo" required>
+                </div>
+                <div class="form-group">
+                    <label>Período:</label>
+                    <input type="text" class="periodo" required placeholder="Ex: Jan/2020 - Atual">
+                </div>
+                <div class="form-group">
+                    <label>Descrição:</label>
+                    <textarea class="descricao" required></textarea>
+                </div>
+            `;
+            document.getElementById('experiencias').appendChild(container);
+        }
+
+        function adicionarFormacao() {
+            const container = document.createElement('div');
+            container.className = 'formacao-container';
+            container.innerHTML = `
+                <div class="form-group">
+                    <label>Instituição:</label>
+                    <input type="text" class="instituicao" required>
+                </div>
+                <div class="form-group">
+                    <label>Curso:</label>
+                    <input type="text" class="curso" required>
+                </div>
+                <div class="form-group">
+                    <label>Período:</label>
+                    <input type="text" class="periodo" required placeholder="Ex: 2018 - 2022">
+                </div>
+            `;
+            document.getElementById('formacoes').appendChild(container);
+        }
+
+        async function gerarCurriculo() {
+            console.log('Iniciando a geração do currículo...');
+            const preview = document.getElementById('preview');
+            const curriculo = gerarHTML();
+            
+            if (curriculo) {
+                preview.innerHTML = curriculo;
+                preview.style.display = 'block';
+                await downloadPDF();
+            }
+        }
+
+        async function downloadPDF() {
+            console.log('Iniciando o processo de download do PDF');
+            const previewElement = document.getElementById('preview');
+            if (!previewElement) {
+                console.error('Elemento não encontrado: #preview');
+                alert('Erro ao gerar o currículo. Elemento #preview não encontrado.');
+                return;
+            }
+            
+            const element = previewElement.querySelector('.curriculo');
+            if (!element) {
+                console.error('Elemento não encontrado: .curriculo dentro de #preview');
+                alert('Erro ao gerar o currículo. Elemento .curriculo não encontrado dentro de #preview.');
+                return;
+            }
+            
+            console.log('Elemento encontrado:', element);
+            const orientacao = document.getElementById('orientacao').value;
+            const nome = document.getElementById('nome').value.trim();
+            const filename = nome ? `curriculo_${nome.toLowerCase().replace(/\s+/g, '_')}.pdf` : 'curriculo.pdf';
+
+            // Criar uma cópia do elemento para não afetar a visualização
+            const elementClone = element.cloneNode(true);
+            elementClone.style.fontSize = '8pt';
+            elementClone.style.lineHeight = '1.1';
+            elementClone.style.padding = '4mm';
+
+            // Ajustar foto
+            const foto = elementClone.querySelector('.foto-preview-curriculo');
+            if (foto) {
+                foto.style.width = '220px';
+                foto.style.height = '160px';
+                foto.style.objectFit = 'cover';
+                foto.style.objectPosition = 'center';
+                foto.style.borderRadius = '12px';
+                foto.style.marginBottom = '8px';
+            }
+
+            // Ajustar espaçamentos para ficar mais compacto
+            const secoes = elementClone.querySelectorAll('.secao');
+            secoes.forEach(secao => {
+                secao.style.marginBottom = '6px';
+                secao.style.paddingBottom = '6px';
+            });
+
+            // Ajustar espaçamentos da timeline
+            const timelineItems = elementClone.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.style.marginBottom = '4px';
+                item.style.paddingBottom = '4px';
+            });
+
+            // Ajustar cabeçalho
+            const header = elementClone.querySelector('.header');
+            if (header) {
+                header.style.marginBottom = '8px';
+                header.style.paddingBottom = '8px';
+            }
+
+            // Ajustar contatos
+            const contatos = elementClone.querySelector('.contato');
+            if (contatos) {
+                contatos.style.gap = '4px';
+                contatos.style.marginBottom = '6px';
+            }
+
+            const opt = {
+                margin: [4, 4, 4, 4], // Reduzir margens
+                filename: filename,
+                image: { 
+                    type: 'jpeg', 
+                    quality: 1.0
+                },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    scrollX: 0,
+                    scrollY: 0,
+                    logging: true,
+                    letterRendering: true,
+                    imageTimeout: 0,
+                    removeContainer: true
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: orientacao,
+                    compress: true,
+                    hotfixes: ["px_scaling"]
+                }
+            };
+
+            try {
+                console.log('Iniciando a conversão para PDF...');
+                await html2pdf().set(opt).from(elementClone).save();
+                console.log('PDF gerado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Ocorreu um erro ao gerar o PDF. Por favor, tente novamente.');
+            }
+        }
+
+        function mudarTema() {
+            const tema = document.getElementById('tema').value;
+            const root = document.documentElement;
+            
+            const temas = {
+                padrao: {
+                    primary: '#722F37',
+                    secondary: '#4A1D24',
+                    accent: '#8B4049',
+                    success: '#A4474F',
+                    bg: '#F5E6E8'
+                },
+                azul: {
+                    primary: '#1E3A8A',
+                    secondary: '#1E40AF',
+                    accent: '#2563EB',
+                    success: '#3B82F6',
+                    bg: '#EFF6FF'
+                },
+                verde: {
+                    primary: '#065F46',
+                    secondary: '#047857',
+                    accent: '#10B981',
+                    success: '#34D399',
+                    bg: '#ECFDF5'
+                },
+                roxo: {
+                    primary: '#6D28D9',
+                    secondary: '#7C3AED',
+                    accent: '#8B5CF6',
+                    success: '#A78BFA',
+                    bg: '#F3E8FF'
+                },
+                moderno: {
+                    primary: '#FF5722',
+                    secondary: '#FF7043',
+                    accent: '#FF8A65',
+                    success: '#FFAB91',
+                    bg: '#FFF3E0'
+                },
+                minimalista: {
+                    primary: '#374151',
+                    secondary: '#4B5563',
+                    accent: '#9CA3AF',
+                    success: '#D1D5DB',
+                    bg: '#F9FAFB'
+                }
+            };
+
+            const corSelecionada = temas[tema];
+            root.style.setProperty('--primary-color', corSelecionada.primary);
+            root.style.setProperty('--secondary-color', corSelecionada.secondary);
+            root.style.setProperty('--accent-color', corSelecionada.accent);
+            root.style.setProperty('--success-color', corSelecionada.success);
+            root.style.setProperty('--bg-color', corSelecionada.bg);
+        }
+
+        function gerarHTML() {
+            const nivel = document.getElementById('nivel').value;
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const linkedin = document.getElementById('linkedin').value;
+            const github = document.getElementById('github').value;
+            const objetivo = document.getElementById('objetivo').value;
+            const habilidades = document.getElementById('habilidades').value;
+
+            console.log('Gerando HTML do currículo...');
+            console.log('Objetivo:', objetivo);
+
+            // Verificar se o campo objetivo está vazio
+            if (!objetivo || objetivo.trim() === '') {
+                console.warn('Campo de objetivo está vazio. Verifique o preenchimento do campo antes de gerar o currículo.');
+                alert('Por favor, preencha o campo de objetivo profissional.');
+                return '';
+            }
+
+            const fotoSrc = document.getElementById('foto-preview').src;
+
+            // Gerar HTML das experiências
+            let experiencias = '';
+            const experienciasContainer = document.getElementById('experiencias');
+            if (experienciasContainer) {
+                const experienciasItems = experienciasContainer.getElementsByClassName('experiencia-container');
+                
+                for (let exp of experienciasItems) {
+                    const cargo = exp.querySelector('.cargo')?.value || '';
+                    const empresa = exp.querySelector('.empresa')?.value || '';
+                    const periodo = exp.querySelector('.periodo')?.value || '';
+                    const descricao = exp.querySelector('.descricao')?.value || '';
+
+                    experiencias += `
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="cargo-periodo">
+                                    <h3>${cargo}</h3>
+                                    <span>${periodo}</span>
+                                </div>
+                                <h4>${empresa}</h4>
+                                <p>${descricao}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // Gerar HTML das formações
+            let formacoes = '';
+            const formacoesContainer = document.getElementById('formacoes');
+            if (formacoesContainer) {
+                const formacoesItems = formacoesContainer.getElementsByClassName('formacao-container');
+                
+                for (let form of formacoesItems) {
+                    const curso = form.querySelector('.curso')?.value || '';
+                    const instituicao = form.querySelector('.instituicao')?.value || '';
+                    const conclusao = form.querySelector('.periodo')?.value || '';
+
+                    formacoes += `
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="curso-periodo">
+                                    <h3>${curso}</h3>
+                                    <span>${conclusao}</span>
+                                </div>
+                                <h4>${instituicao}</h4>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // Gerar currículo HTML
+            const curriculo = `
+                <div class="curriculo" data-tema="${document.getElementById('tema').value}">
+                    <div class="header">
+                        <img src="${fotoSrc}" alt="Foto do perfil" class="foto-preview-curriculo">
+                        <h1>${nome}</h1>
+                        <div class="contato">
+                            <p><a href="mailto:${email}">📧 ${email}</a></p>
+                            <p><a href="tel:${telefone}">📱 ${telefone}</a></p>
+                            ${linkedin ? `<p><a href="${linkedin}" target="_blank">🔗 ${linkedin}</a></p>` : ''}
+                            ${github ? `<p><a href="${github}" target="_blank">💻 ${github}</a></p>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="secao">
+                        <h2>Objetivo Profissional</h2>
+                        <p style="color: var(--text-color); font-size: 1em; line-height: 1.6;">${objetivo}</p>
+                    </div>
+
+                    <div class="secao">
+                        <h2>Experiência Profissional</h2>
+                        <div class="timeline">
+                            ${experiencias}
+                        </div>
+                    </div>
+
+                    <div class="secao">
+                        <h2>Formação Acadêmica</h2>
+                        <div class="timeline">
+                            ${formacoes}
+                        </div>
+                    </div>
+
+                    <div class="secao">
+                        <h2>Habilidades Técnicas</h2>
+                        <div class="habilidades">
+                            ${habilidades.split(',').map(hab => `<span class="habilidade">${hab.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            console.log('HTML do currículo gerado com sucesso!');
+            return curriculo;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adiciona evento de input para o campo de objetivo
+            const objetivoInput = document.getElementById('objetivo');
+            objetivoInput.addEventListener('input', function() {
+                console.log('Objetivo atualizado:', this.value);
+            });
+
+            // Chama atualizarConteudoPorNivel quando a página carrega
+            atualizarConteudoPorNivel();
+        });
+
+        // Controles de ajuste da foto
+        const zoomControl = document.getElementById('zoom-control');
+        const positionYControl = document.getElementById('position-y-control');
+        const positionXControl = document.getElementById('position-x-control');
+        const fotoPreview = document.getElementById('foto-preview');
+
+        function atualizarFoto() {
+            const zoom = zoomControl.value / 100;
+            const posY = positionYControl.value;
+            const posX = positionXControl.value;
+            
+            fotoPreview.style.transform = `scale(${zoom})`;
+            fotoPreview.style.objectPosition = `${posX}% ${posY}%`;
+        }
+
+        zoomControl.addEventListener('input', atualizarFoto);
+        positionYControl.addEventListener('input', atualizarFoto);
+        positionXControl.addEventListener('input', atualizarFoto);
+
+        // Atualizar a função de carregamento da foto
+        document.getElementById('foto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('foto-preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    document.querySelector('.foto-controles').style.display = 'block';
+                    
+                    // Resetar controles
+                    zoomControl.value = 100;
+                    positionYControl.value = 50;
+                    positionXControl.value = 50;
+                    atualizarFoto();
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
